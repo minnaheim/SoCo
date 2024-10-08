@@ -10,10 +10,11 @@ def sum(x, y):
     return x + y
 
 
+my_sum = sum
 print("stop")
 print("after stop")
 
-c = sum(3, 4)
+c = my_sum(3, 4)
 print(c)
 
 '''important to know: is both variables and functions are objects. '''

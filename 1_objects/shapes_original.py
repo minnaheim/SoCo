@@ -6,12 +6,12 @@ import math
 by seperating classes from objects we can implement inheritance without changing too much  '''
 
 
+# contract shape defined: with class shape and methods: perimeter, area, and density
 class Shape:
     # init always first, bec.
     def __init__(self, name):
         self.name = name
 
-    #
     def perimeter(self):
         # to signify that this does nothing, we raise an error
         raise NotImplementedError("perimeter missing")
@@ -25,7 +25,8 @@ class Shape:
 
 
 # this is a child of the shape class
-
+# we can derive classes from Shape to represent squares and circles.
+# Since squares and circles have the same methods, we can use them interchangeably. This is called polymorphism
 class Square(Shape):
     def __init__(self, name, side):
         super().__init__(name)  # parent class structure gets inherited

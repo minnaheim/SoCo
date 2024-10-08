@@ -18,7 +18,7 @@ def square_area(thing):
 def shape_density(thing, weight):
     return weight/call(thing, "area")
 
-
+# because functions are data, we save them in a dictionary, and to call a specific funtion we def call.
 # adding shape
 Shape = {
     'density': shape_density,
@@ -27,6 +27,7 @@ Shape = {
 }
 
 # to seperate data from the variables, we do this:
+# this way, we have a square which can have different perimeter and area, but is still part of the class square and parent shape
 Square = {
     'perimeter': square_perimeter,
     'area': square_area,
@@ -49,10 +50,6 @@ def new_square(name, side):
         '_class': Square
     }
     return new_object
-
-
-a_square = new_square('Quadrat', 4)
-# print(a_square)
 
 #### CIRCLE ####
 
@@ -91,28 +88,27 @@ a_circle = circle_new('Kreis1', 5)
 # separate search and call, thus define find
 
 
-def find(cls, key_name):
-    if key_name in cls:
-        return cls[key_name]
-    if cls["_parent"]:
-        find(cls["_parent"], key_name)
-        return cls["_parent"], key_name
-    raise NotImplementedError("Missing method " + key_name)
-
-
+# f we define a parameter in a function with a leading *, it captures any “extra” values passed to the function that don’t line up with named parameters. 
+# Similarly, if we define a parameter with two leading stars **, it captures any extra named parameters:
 def call(thing, key_name, *args):
-    method = find(thing["_class"][key_name])
+    method = find(thing["_class"], key_name)
     return method(thing, *args)
 
 
-area = call(a_square, 'area')
+def find(cls, key_name):
+    if key_name in cls:
+        return cls[key_name]
+    # constructor: 
+    if cls["_parent"]:
+        return find(cls["_parent"], key_name)
+    raise NotImplementedError("Missing method " + key_name)
 
 
 # getting bug because perimeter and area not floatable, aka str
-
 # TODO: create both circle and square class and create example list, to execute below, and to get values, not actual funciton
+a_square = new_square('Quadrat', 4)
 n = a_square['name']
-p = call(a_square['_class'], 'perimeter')
-a = call(a_square['_class'], 'area')
-d = call(a_square['_class'], 'density')
+p = call(a_square, 'perimeter')
+a = call(a_square, 'area')
+d = call(a_square, 'density', 100)
 print(f"{n} has perimeter {p}, area {a} and density {d}.")

@@ -1,0 +1,6 @@
+["sequenz", 
+    ["setzen", "alpha", 1],
+    ["setzen", "beta", 2],
+    ["setzen", "add_two", ["func",["num1","num2"],["addieren", ["bekommen","num1"], ["bekommen","num2"]]]],
+    ["call", "add_two",3, 2]
+]
