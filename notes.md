@@ -73,5 +73,10 @@ here, if we define x = 10 in the global (frame) stack f1 with x = 12, and f2,, a
 -> if we call x in the f2 stack, then which value of x do we get? f1's or global value?
 
 Depends on whether interpreter uses lexical or dynamic scope:
-- lexical: depends on where funciton is written. -> meaning x = 10, if f2 isn't def in f1, then x = 10
+- lexical: depends on where function is written. -> meaning x = 10, if f2 isn't def in f1, then x = 10
 - dynamic: depends on which function is called where -> here x = 12 -> bec. defined in previous env?
+
+
+# Week 5:
+### hash functions
+Every time we create a dictionary, the time it takes to get the value associated with the key, we get O(1), whereas for a list we have O(n), because each key is associated with a hash, so constant time to find it.
